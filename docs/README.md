@@ -22,6 +22,17 @@
 | [09-firmware-tables.md](09-firmware-tables.md) | PCI/ACPI/SMBIOS/MPTable/PIR 等固件表 |
 | [10-runtime.md](10-runtime.md) | 运行时基础设施（栈/线程/输出/PM） |
 
+## 新手向逐行读代码系列（docs/code/）
+
+刚学完王爽《汇编语言》可直接读 [code/README.md](code/README.md)：
+
+1. [入口宏](code/01-entry-macros.md)：PUSHBREGS/ENTRY/ENTRY_ARG 逐行讲
+2. [INT 到 C 的旅程](code/02-int-entry-to-c.md)：跳板、stub、两级分发
+3. [struct bregs](code/03-bregs.md)：寄存器快照结构与 set_cf
+4. [INT 16 案例](code/04-int16-keyboard.md)：环形键盘缓冲区
+5. [INT 13 案例](code/05-int13-disk.md)：读扇区与 CHS→LBA
+6. [MBR 案例](code/06-boot-mbr.md)：0x7C00、55AA 校验、控制权转移
+
 ## 相关仓库文件
 
 - `build-seabios.sh`：编译脚本（根目录）
