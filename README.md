@@ -368,3 +368,20 @@ Bootloader
 - [QEMU GDB 调试文档](https://www.qemu.org/docs/master/system/gdb.html?utm_source=chatgpt.com)
 
 我的建议： 先使用 QEMU + GDB，从 `0xFFFFFFF0` 开始单步执行，观察 `CS`、`EIP`、`CR0` 等寄存器的变化。然后进入 SeaBIOS 的 `romlayout.S` 和 `post.c`，把汇编与 C 代码连接起来理解。这比单独学习 DOS 8086 汇编更接近真实 BIOS 固件开发。
+
+---
+
+## 八、模块化源码讲解（docs/）
+
+针对子模块锁定的 SeaBIOS 版本（commit `28aa463449b97ef0ebf742ae4fb9f9fad03578670`），按模块编写了带 `文件:行号` 引用的讲解系列，见 [docs/README.md](docs/README.md)：
+
+1. [启动流程](docs/01-startup-flow.md)：`reset_vector` → `handle_post` → `maininit` → `startBoot`
+2. [内存管理](docs/02-memory.md)：e820、malloc、ROM shadow、PMM
+3. [中断服务](docs/03-interrupts.md)：向量表、INT 13/15/16/1A 分发
+4. [磁盘存储](docs/04-disk.md)：INT 13 与 ata/ahci/nvme/virtio/usb 驱动
+5. [启动选择](docs/05-boot.md)：bootentry、INT 19、MBR 校验
+6. [USB 与输入](docs/06-usb-input.md)：USB 控制器、PS2、INT 16
+7. [视频与控制台](docs/07-vga-console.md)：vgasrc、sercon、bootsplash、printf/panic
+8. [时钟](docs/08-clock.md)：PIT、RTC、INT 08/1A
+9. [固件表](docs/09-firmware-tables.md)：fw_cfg、PCI 初始化、ACPI/SMBIOS/MPTable
+10. [运行时基础设施](docs/10-runtime.md)：栈/线程、optionroms、resume
